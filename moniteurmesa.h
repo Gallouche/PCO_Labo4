@@ -9,7 +9,7 @@ class MoniteurMESA
 {
 protected:
     QMutex mutex;
-    QWaitCondition idFree;
+    QWaitCondition* idFree;
     static QVector<bool> taskOver;
     int indexToWatch;
     bool isFree;

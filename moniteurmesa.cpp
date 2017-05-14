@@ -9,14 +9,14 @@ void MoniteurMESA::acquire()
 {
         mutex.lock();
         std::cout << "aall"<< std::endl;
-        idFree.wait(&mutex);
+        idFree->wait(&mutex);
         std::cout << "bbbbba"<< std::endl;
         mutex.unlock();
  }
 
 void MoniteurMESA::release()
 {
-    idFree.wakeOne();
+    idFree->wakeOne();
 }
 
 bool MoniteurMESA::isFinished(){
