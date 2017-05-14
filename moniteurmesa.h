@@ -9,11 +9,12 @@ class MoniteurMESA
 {
 protected:
     QMutex mutex;
-    QWaitCondition isFree;
+    QWaitCondition* isFree;
     static QVector<bool> taskOver;
-    int tailleTab;
+    int indexToWatch;
+
 public:
-    MoniteurMESA(int tailleTab);
+    MoniteurMESA(int indexToWatch);
     virtual ~MoniteurMESA(){}
     void acquire();
     void release();

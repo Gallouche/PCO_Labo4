@@ -1,7 +1,7 @@
 #include "moniteurmesa.h"
 
-MoniteurMESA::MoniteurMESA(int tailleTab):
-    tailleTab(tailleTab),
+MoniteurMESA::MoniteurMESA(int indexToWatch):
+    indexToWatch(indexToWatch)
 {
     isFree = new QWaitCondition();
 
@@ -16,9 +16,9 @@ void MoniteurMESA::release(){
 }
 
 bool MoniteurMESA::isFinished(){
-    for(int i = 0; i < taskOver.size(); i++){
-        if(!taskOver.at(i))
-            return false;
-    }
+    //for(int i = 0; i < taskOver.size(); i++){
+     //   if(!taskOver.at(i))
+      //      return false;
+    //}
     return true;
 }
