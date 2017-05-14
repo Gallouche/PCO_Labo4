@@ -14,8 +14,5 @@ public:
     sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size);
     void run();
 };
-
 template class sortHandler<int>;
-
-
 #endif // SORTHANDLER_H

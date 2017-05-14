@@ -9,7 +9,7 @@ sortHandler<T>::sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size):
 {}
 
 template<typename T>
-sortHandler<T>::run(){
+void sortHandler<T>::run(){
    while(true){
        T swap;
        for (int c = size - 1 ; c > 0; --c)

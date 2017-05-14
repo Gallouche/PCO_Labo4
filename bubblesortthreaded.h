@@ -5,7 +5,6 @@
 #include "moniteurmesa.h"
 #include <QList>
 #include "sorthandler.h"
-
 template<typename T>
 class BubbleSortThreaded : public ISort<T>
 {
@@ -20,15 +19,42 @@ public:
 
     virtual void sort(T a[], qint64 size)
     {
-        int tailleOpti = size/nbThreads;
+        QList<int> listLengthTh = findThreadsLenght(size);
+        QList<sortHandler <T>*> threads;
+
         int index = 0;
-        QList<sortHandler<T>*> threads;
-
-        for(int i = 0; i < nbThreads; ++i){
-
-            threads.push_back(new sortHandler<T>(index,
-                                              (index+tailleOpti),a, size));
+        for(int i = 0; i < nbThreads; ++i)
+        {
+            // on ajoute un sortHandler, avec comme index de base index,
+            // et comme index final index + longueur -1, le moins 1 car si l'index est de 0 et la longueur 6
+            // l'index final doit être le 5 (on compte le premier index) et non pas le 6
+            int indexFinal = (index + listLengthTh.at(i) - 1);
+            threads.push_back(new sortHandler<T>(index, indexFinal, a, size));
+            index = indexFinal;
         }
+    }
+    /**
+     * @brief findThreadsLenght cette fonction permet de calculer la taille pour chaque longueur que chaque thread va calculer.
+     * si nous faisions un basique length/size, le dernier thread aurait une taille differente (la plupart du temps) des premiers threads
+     * Nous avons donc cette fonction qui va calculer la premiere longueur de thread et ensuite, la garder pour le premier thread et ensuite,
+     * enlever ce thread du calcul. On soustrait sa longueur -1 à la taille, et on recommence le calcul pour les n-1 threads suivants avec la nouvelle taille.
+     * cela va armoniser les taillles des threads.
+     * @return une liste des longueur pour chacun des threads.
+     */
+    QList<int> findThreadsLenght(qint64 size)
+    {
+        QList<int> listLengthTh;
+        qint64 currentSize = size;
+        int currentNbTh = nbThreads;
+
+        for(int i = 0; i < nbThreads; i++)
+        {
+            int lenghtTh = ceil( ( currentSize + (currentNbTh-1) )/currentNbTh );
+            listLengthTh.push_back(lenghtTh);
+            currentSize = currentSize - (lenghtTh - 1);
+            currentNbTh--;
+        }
+        return listLengthTh;
     }
 };
 
