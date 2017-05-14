@@ -5,7 +5,6 @@
 #include "moniteurmesa.h"
 #include <QList>
 #include "sorthandler.h"
-
 template<typename T>
 class BubbleSortThreaded : public ISort<T>
 {
@@ -20,16 +19,18 @@ public:
 
     virtual void sort(T a[], qint64 size)
     {
-        int tailleOpti = floor(size/nbThreads) + 1;
-        //int tailleLastThread = size - tailleOpti;
         QList<int> listLengthTh = findThreadsLenght(size);
-        QList<sortHandler <T>> threads;
+        QList<sortHandler <T>*> threads;
 
+        int index = 0;
         for(int i = 0; i < nbThreads; ++i)
         {
-
-            //threads.push_back(new sortHandler<T>(index,
-                                              //(index+tailleOpti),a));
+            // on ajoute un sortHandler, avec comme index de base index,
+            // et comme index final index + longueur -1, le moins 1 car si l'index est de 0 et la longueur 6
+            // l'index final doit être le 5 (on compte le premier index) et non pas le 6
+            int indexFinal = (index + listLengthTh.at(i) - 1);
+            threads.push_back(new sortHandler<T>(index, indexFinal, a));
+            index = indexFinal;
         }
     }
     /**

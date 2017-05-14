@@ -1,6 +1,6 @@
 #include "sorthandler.h"
-
-sortHandler::sortHandler()
+template<typename T>
+sortHandler<T>::sortHandler(int firstIndex,int lastIndex,T tab[])
 {
 
 }

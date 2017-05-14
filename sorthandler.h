@@ -9,5 +9,5 @@ class sortHandler
 public:
     sortHandler(int firstIndex,int lastIndex,T tab[]);
 };
-
+template class sortHandler<int>;
 #endif // SORTHANDLER_H
