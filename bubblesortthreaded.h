@@ -22,14 +22,12 @@ public:
     {
         int tailleOpti = size/nbThreads;
         int index = 0;
-        QList<sortHandler> threads = new QList<sortHandler>;
+        QList<sortHandler<T>*> threads;
 
         for(int i = 0; i < nbThreads; ++i){
-            if(i = 0 || i == (nbThreads-1)){
 
-            }
-            threads.push_back(new sortHandler(index,
-                                              (index+tailleOpti),a));
+            threads.push_back(new sortHandler<T>(index,
+                                              (index+tailleOpti),a, size));
         }
     }
 };

@@ -23,8 +23,6 @@ void SortTester::test(qint64 tabSize, int nbThreads)
     for(qint64 i=0;i<tabSize;i++)
         tab[i] = rand();
 
-    // A remplacer par BubbleSortThreaded
-    //BubbleSort<int> sorter;
     BubbleSortThreaded<int> sorter(nbThreads);
 
     sorter.sort(tab,tabSize);
