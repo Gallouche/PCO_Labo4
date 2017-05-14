@@ -45,6 +45,15 @@ public:
             }
             index = indexFinal;
         }
+
+        for(int i = 0; i < threads.length(); i++)
+        {
+            threads.at(i)->start();
+        }
+        for(int i = 0; i < threads.length(); i++)
+        {
+            threads.at(i)->wait();
+        }
     }
     /**
      * @brief findThreadsLenght cette fonction permet de calculer la taille pour chaque longueur que chaque thread va calculer.

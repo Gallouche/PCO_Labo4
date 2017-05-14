@@ -20,6 +20,7 @@ public:
     void acquire();
     void release();
     bool isFinished();
+    void maybeFinished();
 
 };
 

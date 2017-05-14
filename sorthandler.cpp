@@ -1,5 +1,5 @@
 #include "sorthandler.h"
-
+#include <iostream>
 template<typename T>
 sortHandler<T>::sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
                             MoniteurMESA* firstMonitor, MoniteurMESA* LastMonitor):
@@ -16,6 +16,7 @@ void sortHandler<T>::run()
 {
    while(true)
    {
+       bool changes = false;
        T swap;
        for (int c = size - 1 ; c > 0; --c)
        {
@@ -33,14 +34,29 @@ void sortHandler<T>::run()
                else if(lastIndex != size-1 && c == lastIndex)
                {
                    lastMonitor->acquire();
+
+               }
+               else
+               {
+                   if(firstIndex != 0)
+                       firstMonitor->release();
+                   if(lastIndex != size-1)
+                        lastMonitor->release();
                }
                if (tab[d] > tab[d+1]) /* For decreasing order use < */
                {
+                   //changes = true; //des changements vont être effectués dans le tableau
                    swap     = tab[d];
                    tab[d]   = tab[d+1];
                    tab[d+1] = swap;
                }
            }
+       }
+
+       if(changes == false)
+       {
+           std::cout << "bbbbb" << std::endl;
+           //break;
        }
    }
 }

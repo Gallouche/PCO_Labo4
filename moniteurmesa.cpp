@@ -1,19 +1,22 @@
 #include "moniteurmesa.h"
-
+#include <iostream>
 MoniteurMESA::MoniteurMESA(int indexToWatch):
     indexToWatch(indexToWatch),
     isFree(true)
+{}
+
+void MoniteurMESA::acquire()
 {
-    isFree = new QWaitCondition();
+        mutex.lock();
+        std::cout << "aall"<< std::endl;
+        idFree.wait(&mutex);
+        std::cout << "bbbbba"<< std::endl;
+        mutex.unlock();
+ }
 
-}
-
-void MoniteurMESA::acquire(){
-    mutex.lock();
-}
-
-void MoniteurMESA::release(){
-
+void MoniteurMESA::release()
+{
+    idFree.wakeOne();
 }
 
 bool MoniteurMESA::isFinished(){
