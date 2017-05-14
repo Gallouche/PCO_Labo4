@@ -3,7 +3,9 @@
 MoniteurMESA::MoniteurMESA(int indexToWatch):
     indexToWatch(indexToWatch),
     isFree(true)
-{}
+{
+    idFree = new QWaitCondition();
+}
 
 void MoniteurMESA::acquire()
 {
