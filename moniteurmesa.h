@@ -11,11 +11,11 @@ protected:
     QMutex mutex;
     QWaitCondition idFree;
     static QVector<bool> taskOver;
-    int tailleTab;
+    int indexToWatch;
     bool isFree;
 
 public:
-    MoniteurMESA(int tailleTab);
+    MoniteurMESA(int indexToWatch);
     virtual ~MoniteurMESA(){}
     void acquire();
     void release();

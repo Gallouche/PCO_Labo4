@@ -10,9 +10,11 @@ class sortHandler : public QThread
     int lastIndex;
     T* tab;
     qint64 size;
+    MoniteurMESA* firstMonitor;
+    MoniteurMESA* lastMonitor;
 public:
     sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
-                Moniteurmesa fisrtMonitor, Moniteurmesa lastMonitor);
+                MoniteurMESA* fisrtMonitor, MoniteurMESA* lastMonitor);
     void run();
 };
 template class sortHandler<int>;

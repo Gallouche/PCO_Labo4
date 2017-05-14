@@ -23,13 +23,26 @@ public:
         QList<sortHandler <T>*> threads;
 
         int index = 0;
+        QList<MoniteurMESA*> listMESA = QList<MoniteurMESA*>();
         for(int i = 0; i < nbThreads; ++i)
         {
             // on ajoute un sortHandler, avec comme index de base index,
             // et comme index final index + longueur -1, le moins 1 car si l'index est de 0 et la longueur 6
             // l'index final doit être le 5 (on compte le premier index) et non pas le 6
             int indexFinal = (index + listLengthTh.at(i) - 1);
-            threads.push_back(new sortHandler<T>(index, indexFinal, a, size));
+            listMESA.push_back(new MoniteurMESA(indexFinal));
+            if(i == 0)//pour le premier thread, pas besoin de moniteurMESA pour le premier index
+            {
+                threads.push_back(new sortHandler<T>(index, indexFinal, a, size, NULL, listMESA.at(i)));
+            }
+            else if(i == nbThreads-1)//si dernier thread pas besoin de moniteurMESA pour le dernier index
+            {
+                threads.push_back(new sortHandler<T>(index, indexFinal, a, size, listMESA.at(i-1), NULL));
+            }
+            else
+            {
+                    threads.push_back(new sortHandler<T>(index, indexFinal, a, size, listMESA.at(i-1) ,listMESA.at(i)));
+            }
             index = indexFinal;
         }
     }

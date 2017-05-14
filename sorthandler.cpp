@@ -2,7 +2,7 @@
 
 template<typename T>
 sortHandler<T>::sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
-                            MoniteurMESA firstMonitor, MoniteurMESA LastMonitor):
+                            MoniteurMESA* firstMonitor, MoniteurMESA* LastMonitor):
     firstIndex(firstIndex),
     lastIndex(lastIndex),
     tab(tab),
@@ -26,13 +26,13 @@ void sortHandler<T>::run()
                // nous devons demander au moniteur si l'index est utilisé (mise en queue par le moniteur au cas ou utilisé)
                if(firstIndex != 0 && d == firstIndex)
                {
-                    firstMonitor.acquire();
+                    firstMonitor->acquire();
                }
                //cas ou c est au lastIndex et ou il n'est pas le tout dernier element du tableau (au quel cas il
                //n' y aurait pas besoin de verifier, pas d'acces multiple a cet index), nous appelons acces de ce monitor
                else if(lastIndex != size-1 && c == lastIndex)
                {
-                   lastMonitor.acquire();
+                   lastMonitor->acquire();
                }
                if (tab[d] > tab[d+1]) /* For decreasing order use < */
                {
