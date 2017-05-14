@@ -12,7 +12,7 @@ class sortHandler : public QThread
     qint64 size;
 public:
     sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
-                Moniteurmesa fisrtMonitor, Moniteurmesa lastMonitor);
+                MoniteurMESA fisrtMonitor, MoniteurMESA lastMonitor);
     void run();
 };
 template class sortHandler<int>;

@@ -2,7 +2,6 @@
 
 MoniteurMESA::MoniteurMESA(int tailleTab):
     tailleTab(tailleTab),
-    isFree(true)
 {
     isFree = new QWaitCondition();
 
