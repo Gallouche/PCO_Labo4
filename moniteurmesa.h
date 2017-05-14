@@ -1,19 +1,25 @@
 #ifndef MONITEURMESA_H
 #define MONITEURMESA_H
 
-#include "QMutex"
-#include "QWaitCondition"
+#include <QMutex>
+#include <QVector>
+#include <QWaitCondition>
 
 class MoniteurMESA
 {
 protected:
     QMutex mutex;
-    QWaitCondition cond;
-    bool finish;
+    QWaitCondition idFree;
+    static QVector<bool> taskOver;
+    int tailleTab;
+    bool isFree;
 
 public:
-    MoniteurMESA();
+    MoniteurMESA(int tailleTab);
     virtual ~MoniteurMESA(){}
+    void acquire();
+    void release();
+    bool isFinished();
 
 };
 
