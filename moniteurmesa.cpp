@@ -10,9 +10,9 @@ MoniteurMESA::MoniteurMESA(int indexToWatch):
 void MoniteurMESA::acquire()
 {
         mutex.lock();
-        std::cout << "aall"<< std::endl;
+        std::cout << "debut"<< std::endl;
         idFree->wait(&mutex);
-        std::cout << "bbbbba"<< std::endl;
+        std::cout << "fin"<< std::endl;
         mutex.unlock();
  }
 
@@ -21,10 +21,11 @@ void MoniteurMESA::release()
     idFree->wakeOne();
 }
 
-bool MoniteurMESA::isFinished(){
-    //for(int i = 0; i < taskOver.size(); i++){
-     //   if(!taskOver.at(i))
-      //      return false;
-    //}
-    return true;
+bool MoniteurMESA::isFinished()
+{
+    nbStop++;
+    std::cout << nbStop << std::endl;
+    if(nbStop == 5)
+        return true;
+    return false;
 }

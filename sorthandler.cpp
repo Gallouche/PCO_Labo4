@@ -59,8 +59,9 @@ void sortHandler<T>::run()
 
        if(changes == false)
        {
-           //std::cout << "bbbbb" << std::endl;
-           //break;
+           std::cout << "qqwee" << std::endl;
+           if(firstMonitor->isFinished())
+             break;
        }
    }
 }

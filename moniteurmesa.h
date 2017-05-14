@@ -13,6 +13,7 @@ protected:
     static QVector<bool> taskOver;
     int indexToWatch;
     bool isFree;
+    int nbStop;
 
 public:
     MoniteurMESA(int indexToWatch);
