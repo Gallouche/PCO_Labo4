@@ -39,11 +39,15 @@ void MoniteurMESA::release()
 
 bool MoniteurMESA::isFinished()
 {
+    mutex.lock();
+
+    bool finished = false;
     nbStop++;
-    std::cout << nbStop << std::endl;
-    if(nbStop == 5) {
+    if(nbStop == 5)
+    {
         std::cout << "fini" << std::endl;
-        return true;
+        finished = true;
     }
-    return false;
+    mutex.unlock();
+    return finished;
 }
