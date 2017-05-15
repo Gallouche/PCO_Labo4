@@ -58,18 +58,6 @@ void sortHandler<T>::run()
                    std::cout << "last fin" << std::endl;
 
                }
-               else
-               {
-                   if(firstIndex != 0)
-                   {
-                        std::cout << numero << std::endl;
-                       firstMonitor->release();
-                   }
-                   if(lastIndex != size-1)
-                   {
-                       lastMonitor->release();
-                   }
-               }
                if (tab[d] > tab[d+1]) /* For decreasing order use < */
                {
                    changes  = true; //des changements vont être effectués dans le tableau
@@ -77,6 +65,17 @@ void sortHandler<T>::run()
                    tab[d]   = tab[d+1];
                    tab[d+1] = swap;
                }
+
+               if(firstIndex != 0 && d == firstIndex)
+               {
+                   std::cout << numero << std::endl;
+                   firstMonitor->release();
+               }
+               else if(lastIndex != size-1 && c == lastIndex)
+               {
+                   lastMonitor->release();
+               }
+
            }
        }
        if(!changes)
