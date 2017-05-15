@@ -24,8 +24,20 @@ class sortHandler : public QThread
     MoniteurMESA* firstMonitor; //premier moniteur qui va verifier le firstIndex (index qui sont partagés sont tjr le 1er ou dernier)
     MoniteurMESA* lastMonitor; //deuxieme moniteur qui va verifier le lastIndex (index qui sont partagés sont tjr le 1er ou dernier)
 public:
+    /**
+     * @brief Constructeur de sortHandler
+     * @param firstIndex : debut du sous tableau
+     * @param lastIndex : fin du sous tableau
+     * @param tab : tableau à trier
+     * @param size : taille du tableau
+     * @param fisrtMonitor: moniteur de l'index partagé du début du sous tableau
+     * @param lastMonitor: moniteur de l'index de partagé fin du sous tableau
+     */
     sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
                 MoniteurMESA* fisrtMonitor, MoniteurMESA* lastMonitor);
+    /**
+     * @brief redéfinition de la fonction run de Thread
+     */
     void run();
 };
 
