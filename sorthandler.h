@@ -1,3 +1,14 @@
+/**
+ * -------------------------------------------------------------------------------
+ * Laboratoire : PCO - Labo4
+ * Fichier     : sorthandler.h
+ * Auteur(s)   : Théo Gallandat & Kevin Moreira
+ * Date        : 15/05/2017
+ *
+ * But         : Classe qui fourni un thread pour le tri d'un sous tableau
+ * Remarque(s) : R.A.S.
+ -------------------------------------------------------------------------------
+ */
 #ifndef SORTHANDLER_H
 #define SORTHANDLER_H
 

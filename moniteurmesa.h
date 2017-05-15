@@ -1,3 +1,15 @@
+/**
+ * -------------------------------------------------------------------------------
+ * Laboratoire : PCO - Labo4
+ * Fichier     : moniteurmesa.h
+ * Auteur(s)   : Théo Gallandat & Kevin Moreira
+ * Date        : 15/05/2017
+ *
+ * But         : Classe qui fourni un moniteur mesa pour la gestion des sections
+ *               critiques.
+ * Remarque(s) : R.A.S.
+ -------------------------------------------------------------------------------
+ */
 #ifndef MONITEURMESA_H
 #define MONITEURMESA_H
 

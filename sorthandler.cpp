@@ -1,3 +1,14 @@
+/**
+ * -------------------------------------------------------------------------------
+ * Laboratoire : PCO - Labo4
+ * Fichier     : sorthandler.cpp
+ * Auteur(s)   : Théo Gallandat & Kevin Moreira
+ * Date        : 15/05/2017
+ *
+ * But         : Implémentation du thread sorthandler
+ * Remarque(s) : R.A.S.
+ -------------------------------------------------------------------------------
+ */
 #include "sorthandler.h"
 #include <iostream>
 template<typename T>

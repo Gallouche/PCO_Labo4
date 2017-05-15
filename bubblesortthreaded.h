@@ -1,3 +1,15 @@
+/**
+ * -------------------------------------------------------------------------------
+ * Laboratoire : PCO - Labo4
+ * Fichier     : bubblesortthreaded.h
+ * Auteur(s)   : Théo Gallandat & Kevin Moreira
+ * Date        : 15/05/2017
+ *
+ * But         : Classe qui tri un tableau séparant la tache en un nombre de
+ *               threads donné.
+ * Remarque(s) : R.A.S.
+ -------------------------------------------------------------------------------
+ */
 #ifndef BUBBLESORTTHREADED_H
 #define BUBBLESORTTHREADED_H
 
