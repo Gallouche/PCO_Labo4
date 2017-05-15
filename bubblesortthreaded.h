@@ -21,7 +21,6 @@ public:
     {
         QList<int> listLengthTh = findThreadsLenght(size);
         QList<sortHandler <T>*> threads;
-
         int index = 0;
         QList<MoniteurMESA*> listMESA = QList<MoniteurMESA*>();
         for(int i = 0; i < nbThreads; ++i)
