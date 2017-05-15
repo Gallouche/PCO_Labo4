@@ -54,10 +54,14 @@ void MoniteurMESA::release()
     mutex.unlock();
 }
 
+/**
+ * @brief Fonction pour constater la terminaison du tri
+ * @param ecremFin booleen qui signal qu'il ya eu un changement
+ * @return
+ */
 bool MoniteurMESA::isFinished(bool ecremFin)
 {
     mutex.lock();
-
     bool finished = false;
     if(ecremFin)
         nbStop++;

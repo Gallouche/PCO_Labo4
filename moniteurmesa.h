@@ -8,7 +8,11 @@
  * But         : Classe qui fourni un moniteur mesa pour la gestion des sections
  *               critiques.
  * Remarque(s) : Les 2 thread vont demander des acces au moniteur qui va soit leur
- *               donner l'acces, soit les faire attendre
+ *               donner l'acces, soit les faire attendre.
+ *               Nous avons rencontrer des probleme pour l'arret des tris, nous avons
+ *               donc (pour ne pas rester bloquer) qu'apres un certain nombres de tours
+ *               sans changement dans le tableau, le tri est fini et le thread le signal
+ *               au moniteur. Ce nombre est arbitraire
  -------------------------------------------------------------------------------
  */
 #ifndef MONITEURMESA_H
@@ -27,7 +31,7 @@ protected:
     int indexToWatch;
     //bool pour savoir si l'acces sur la variable est libre ou pas
     bool isFree;
-    //compteur de tour pour l'arret du tri
+    //compteur de tours pour l'arret du tri
     int nbStop;
 
 public:
