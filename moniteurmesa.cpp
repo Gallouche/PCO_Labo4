@@ -21,13 +21,17 @@ MoniteurMESA::MoniteurMESA(int indexToWatch):
 void MoniteurMESA::acquire()
 {
         mutex.lock();
-        idFree->wait(&mutex);
+        if(!isFree)
+            idFree->wait(&mutex);
+        else
+            isFree = false;
         mutex.unlock();
  }
 
 void MoniteurMESA::release()
 {
     mutex.lock();
+    isFree = true;
     idFree->wakeOne();
     mutex.unlock();
 }
