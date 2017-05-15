@@ -25,10 +25,10 @@ sortHandler<T>::sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
 template<typename T>
 void sortHandler<T>::run()
 {
-   bool finished = true;
+   bool finished = true; //condition de sortie de la boucle
    while(finished)
    {
-       bool changes = false;
+       bool changes = false; // annonce si des changements ont été effectués durant ce tour de la boucle
        T swap;
        for (int c = lastIndex ; c > firstIndex; --c)
        {
@@ -54,22 +54,22 @@ void sortHandler<T>::run()
                    tab[d]   = tab[d+1];
                    tab[d+1] = swap;
                }
-               if(firstIndex != 0 && d == firstIndex)
+               if(firstIndex != 0 && d == firstIndex) //appelle release du bon moniteur pour dire que nous ne somme pas sur l'index partagé
                {
                    firstMonitor->release();
                }
-               else if(lastIndex != size-1 && c == lastIndex)
+               else if(lastIndex != size-1 && c == lastIndex)//appelle release du bon moniteur pour dire que nous ne somme pas sur l'index partagé
                {
                    lastMonitor->release();
                }
            }
        }
-       if(!changes)
+       if(!changes) //si aucun changement n'a eu lieu durant ce tour de boucle, nous informant les moniteurs
        {
            if(firstIndex != 0)
-                finished = !firstMonitor->isFinished();
+                finished = !firstMonitor->isFinished(); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
            if(lastIndex != size-1)
-               finished = !lastMonitor->isFinished();
+               finished = !lastMonitor->isFinished(); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
        }
    }
 }

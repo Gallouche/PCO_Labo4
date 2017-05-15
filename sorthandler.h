@@ -17,12 +17,12 @@
 template<typename T>
 class sortHandler : public QThread
 {
-    int firstIndex;
-    int lastIndex;
-    T* tab;
-    qint64 size;
-    MoniteurMESA* firstMonitor;
-    MoniteurMESA* lastMonitor;
+    int firstIndex; //premier index de la partie du tableau que ce thread va devoir gerer
+    int lastIndex;  //dernier index de la partie du tableau que ce thread va devoir gerer
+    T* tab;         //tableau a trier
+    qint64 size;    //taille du tableau a trier
+    MoniteurMESA* firstMonitor; //premier moniteur qui va verifier le firstIndex (index qui sont partagés sont tjr le 1er ou dernier)
+    MoniteurMESA* lastMonitor; //deuxieme moniteur qui va verifier le lastIndex (index qui sont partagés sont tjr le 1er ou dernier)
 public:
     sortHandler(int firstIndex,int lastIndex,T* tab, qint64 size,
                 MoniteurMESA* fisrtMonitor, MoniteurMESA* lastMonitor);
