@@ -38,7 +38,7 @@ public:
     //relachement de la variable
     void release();
     //savoir si le travail est terminé
-    bool isFinished();
+    bool isFinished(bool ecremFin);
 
 };
 

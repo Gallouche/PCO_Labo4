@@ -67,9 +67,16 @@ void sortHandler<T>::run()
        if(!changes) //si aucun changement n'a eu lieu durant ce tour de boucle, nous informant les moniteurs
        {
            if(firstIndex != 0)
-                finished = !firstMonitor->isFinished(); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
+                finished = !firstMonitor->isFinished(true); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
            if(lastIndex != size-1)
-               finished = !lastMonitor->isFinished(); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
+               finished = !lastMonitor->isFinished(true); //si le moniteur le decide, finished passe a false, et nous sortons de la boucle
+       }
+       else //si des changement ont été effectués, alors on en informe le moniteur
+       {
+           if(firstIndex != 0)
+                firstMonitor->isFinished(false);
+           if(lastIndex != size-1)
+               lastMonitor->isFinished(false);
        }
    }
 }
