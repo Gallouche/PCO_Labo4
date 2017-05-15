@@ -43,7 +43,7 @@ bool MoniteurMESA::isFinished()
 
     bool finished = false;
     nbStop++;
-    if(nbStop >= 5)
+    if(nbStop >= 7)
     {
         finished = true;
     }

@@ -32,14 +32,17 @@ void SortTester::test(qint64 tabSize, int nbThreads)
 
     for(qint64 i=0;i<tabSize;i++)
     {
+        std::cout << tab[i]<< " ";
         if(initial > tab[i])
         {
+            std::cout<<std::endl;
+            std::cout << initial << " > "<< tab[i];
             error = true;
             break;
         }
         initial = tab[i];
     }
-
+    std::cout << std::endl;
     if(error)
        std::cout << "ERREUR " << std::endl;
     else
