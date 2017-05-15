@@ -13,7 +13,8 @@
 #include <iostream>
 MoniteurMESA::MoniteurMESA(int indexToWatch):
     indexToWatch(indexToWatch),
-    isFree(true)
+    isFree(true),
+    nbStop(0)
 {
     idFree = new QWaitCondition();
 }
@@ -40,7 +41,9 @@ bool MoniteurMESA::isFinished()
 {
     nbStop++;
     std::cout << nbStop << std::endl;
-    if(nbStop == 5)
+    if(nbStop == 5) {
+        std::cout << "fini" << std::endl;
         return true;
+    }
     return false;
 }
