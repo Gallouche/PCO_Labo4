@@ -21,9 +21,7 @@ MoniteurMESA::MoniteurMESA(int indexToWatch):
 void MoniteurMESA::acquire()
 {
         mutex.lock();
-        std::cout << "debut"<< std::endl;
         idFree->wait(&mutex);
-        std::cout << "fin"<< std::endl;
         mutex.unlock();
  }
 
