@@ -72,6 +72,4 @@ void sortHandler<T>::run()
                finished = !lastMonitor->isFinished();
        }
    }
-   std::cout << "aass" <<std::endl;
-
 }

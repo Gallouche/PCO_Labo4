@@ -43,9 +43,8 @@ bool MoniteurMESA::isFinished()
 
     bool finished = false;
     nbStop++;
-    if(nbStop == 5)
+    if(nbStop >= 5)
     {
-        std::cout << "fini" << std::endl;
         finished = true;
     }
     mutex.unlock();

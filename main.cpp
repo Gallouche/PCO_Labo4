@@ -2,7 +2,7 @@
 
 #include "sorttester.h"
 
-#define NBTHREADS 2
+#define NBTHREADS 3
 #define TABSIZE 100
 
 int main(int argc, char *argv[])
