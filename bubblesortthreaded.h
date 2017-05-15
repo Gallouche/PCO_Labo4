@@ -7,7 +7,14 @@
  *
  * But         : Classe qui tri un tableau séparant la tache en un nombre de
  *               threads donné.
- * Remarque(s) : R.A.S.
+ * Remarque(s) : Le principe adopter est de découper le tableau en fonction
+ *              du nombre de threads voulu, et ce de façon la plus égale possible
+ *              grace a la fonction findThreadsLenght que nous avons crée.
+ *              Ensuite il s'agit de lancer des threads sorthandler afin qu'ils
+ *              effectue le tri du sous tableau que qu'il leur est confié.
+ *              Pour chaque index critique, nous crée un moniteur qui va gerer
+ *              l'acces a la donnée, et ils sont passer en paramètre au 2 thread
+ *              qui partage l'index critique.
  -------------------------------------------------------------------------------
  */
 #ifndef BUBBLESORTTHREADED_H
@@ -21,8 +28,8 @@ template<typename T>
 class BubbleSortThreaded : public ISort<T>
 {
 private:
+    //nombre de threads souhaité
     int nbThreads;
-
 public:
 
     BubbleSortThreaded(int nbThreads):
@@ -31,10 +38,18 @@ public:
 
     virtual void sort(T a[], qint64 size)
     {
+        //liste des tailles des sous tableau
         QList<int> listLengthTh = findThreadsLenght(size);
+
+        //liste des threads sortHandler
         QList<sortHandler <T>*> threads;
+
+        //index du tableau initialisé au debut de ce dernier
         int index = 0;
+
+        //List des moniteurs
         QList<MoniteurMESA*> listMESA = QList<MoniteurMESA*>();
+
         for(int i = 0; i < nbThreads; ++i)
         {
             // on ajoute un sortHandler, avec comme index de base index,
@@ -52,15 +67,17 @@ public:
             }
             else
             {
-                    threads.push_back(new sortHandler<T>(index, indexFinal, a, size, listMESA.at(i-1) ,listMESA.at(i)));
+                threads.push_back(new sortHandler<T>(index, indexFinal, a, size, listMESA.at(i-1) ,listMESA.at(i)));
             }
             index = indexFinal;
         }
 
+        //on lance les threads
         for(int i = 0; i < threads.length(); i++)
         {
             threads.at(i)->start();
         }
+        //on attend sur les threads
         for(int i = 0; i < threads.length(); i++)
         {
             threads.at(i)->wait();
