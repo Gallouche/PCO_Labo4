@@ -12,8 +12,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     sorttester.cpp \
-    moniteurmesa.cpp \
-    sorthandler.cpp
+    moniteurmesa.cpp
 
 HEADERS += \
     bubblesort.h \
@@ -21,4 +20,5 @@ HEADERS += \
     bubblesortthreaded.h \
     sorttester.h \
     moniteurmesa.h \
-    sorthandler.h
+    sorthandler.h \
+    sorthandlerImpl.h

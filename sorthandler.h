@@ -28,5 +28,7 @@ public:
                 MoniteurMESA* fisrtMonitor, MoniteurMESA* lastMonitor);
     void run();
 };
-template class sortHandler<int>;
+
+#include "sorthandlerImpl.h"
+
 #endif // SORTHANDLER_H

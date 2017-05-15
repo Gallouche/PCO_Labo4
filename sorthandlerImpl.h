@@ -1,7 +1,7 @@
 /**
  * -------------------------------------------------------------------------------
  * Laboratoire : PCO - Labo4
- * Fichier     : sorthandler.cpp
+ * Fichier     : sorthandlerImpl.h
  * Auteur(s)   : Théo Gallandat & Kevin Moreira
  * Date        : 15/05/2017
  *
@@ -79,7 +79,7 @@ void sortHandler<T>::run()
                }
            }
        }
-       if(changes == false)
+       if(!changes)
        {
            if(numero == 1)
                 std::cout << "qqwee" << std::endl;
