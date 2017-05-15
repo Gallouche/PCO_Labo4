@@ -37,13 +37,16 @@ void MoniteurMESA::release()
     mutex.unlock();
 }
 
-bool MoniteurMESA::isFinished()
+bool MoniteurMESA::isFinished(bool ecremFin)
 {
     mutex.lock();
 
     bool finished = false;
-    nbStop++;
-    if(nbStop >= 1000)
+    if(ecremFin)
+        nbStop++;
+    else if(!ecremFin && nbStop > 0)
+        nbStop--;
+    if(nbStop >= 50)
     {
         finished = true;
     }
